@@ -56,20 +56,39 @@ static Handle<Value> GetUsage(const Arguments &args) {
     return scope.Close(usage);
   }
 
-  usage->Set(String::New("lwpid"), Integer::New((id_t) prusage.pr_lwpid));
-  usage->Set(String::New("count"), Integer::New((int) prusage.pr_count));
-  usage->Set(String::New("minf"), Integer::New((ulong_t) prusage.pr_minf));
-  usage->Set(String::New("majf"), Integer::New((ulong_t) prusage.pr_majf));
-  usage->Set(String::New("nswap"), Integer::New((ulong_t) prusage.pr_nswap));
-  usage->Set(String::New("inblk"), Integer::New((ulong_t) prusage.pr_inblk));
-  usage->Set(String::New("oublk"), Integer::New((ulong_t) prusage.pr_oublk));
-  usage->Set(String::New("msnd"), Integer::New((ulong_t) prusage.pr_msnd));
-  usage->Set(String::New("mrcv"), Integer::New((ulong_t) prusage.pr_mrcv));
-  usage->Set(String::New("sigs"), Integer::New((ulong_t) prusage.pr_sigs));
-  usage->Set(String::New("vctx"), Integer::New((ulong_t) prusage.pr_vctx));
-  usage->Set(String::New("ictx"), Integer::New((ulong_t) prusage.pr_ictx));
-  usage->Set(String::New("sysc"), Integer::New((ulong_t) prusage.pr_sysc));
-  usage->Set(String::New("ioch"), Integer::New((ulong_t) prusage.pr_ioch));
+  usage->Set(String::New("lwpid"),    Integer::New((id_t) prusage.pr_lwpid));
+  usage->Set(String::New("count"),    Integer::New((int) prusage.pr_count));
+  //usage->Set(String::New("tstamp"),   Integer::New((time_t) prusage.pr_tstamp.tv_sec));
+  usage->Set(String::New("tstamp"),   Integer::New((long) prusage.pr_tstamp.tv_nsec));
+  //usage->Set(String::New("create"),   Integer::New((time_t) prusage.pr_create.tv_sec));
+  usage->Set(String::New("create"),   Integer::New((long) prusage.pr_create.tv_nsec));
+  //usage->Set(String::New("term"),     Integer::New((time_t) prusage.pr_term.tv_sec));
+  usage->Set(String::New("term"),     Integer::New((long) prusage.pr_term.tv_nsec));
+  ///usage->Set(String::New("rtime"),    Integer::New((time_t) prusage.pr_rtime.tv_sec));
+  usage->Set(String::New("rtime"),    Integer::New((long) prusage.pr_rtime.tv_nsec));
+  //usage->Set(String::New("utime"),    Integer::New((time_t) prusage.pr_utime.tv_sec));
+  usage->Set(String::New("utime"),    Integer::New((long) prusage.pr_utime.tv_nsec));
+  usage->Set(String::New("stime"),    Integer::New((long) prusage.pr_stime.tv_nsec));
+  usage->Set(String::New("ttime"),    Integer::New((long) prusage.pr_ttime.tv_nsec));
+  usage->Set(String::New("tftime"),   Integer::New((long) prusage.pr_tftime.tv_nsec));
+  usage->Set(String::New("dftime"),   Integer::New((long) prusage.pr_dftime.tv_nsec));
+  usage->Set(String::New("kftime"),   Integer::New((long) prusage.pr_kftime.tv_nsec));
+  usage->Set(String::New("ltime"),    Integer::New((long) prusage.pr_ltime.tv_nsec));
+  usage->Set(String::New("slptime"),  Integer::New((long) prusage.pr_slptime.tv_nsec));
+  usage->Set(String::New("wtime"),    Integer::New((long) prusage.pr_wtime.tv_nsec));
+  usage->Set(String::New("stoptime"), Integer::New((long) prusage.pr_stoptime.tv_nsec));
+  usage->Set(String::New("minf"),     Integer::New((ulong_t) prusage.pr_minf));
+  usage->Set(String::New("majf"),     Integer::New((ulong_t) prusage.pr_majf));
+  usage->Set(String::New("nswap"),    Integer::New((ulong_t) prusage.pr_nswap));
+  usage->Set(String::New("inblk"),    Integer::New((ulong_t) prusage.pr_inblk));
+  usage->Set(String::New("oublk"),    Integer::New((ulong_t) prusage.pr_oublk));
+  usage->Set(String::New("msnd"),     Integer::New((ulong_t) prusage.pr_msnd));
+  usage->Set(String::New("mrcv"),     Integer::New((ulong_t) prusage.pr_mrcv));
+  usage->Set(String::New("sigs"),     Integer::New((ulong_t) prusage.pr_sigs));
+  usage->Set(String::New("vctx"),     Integer::New((ulong_t) prusage.pr_vctx));
+  usage->Set(String::New("ictx"),     Integer::New((ulong_t) prusage.pr_ictx));
+  usage->Set(String::New("sysc"),     Integer::New((ulong_t) prusage.pr_sysc));
+  usage->Set(String::New("ioch"),     Integer::New((ulong_t) prusage.pr_ioch));
 
   (void) close(fd);
 
