@@ -1,0 +1,10 @@
+{
+  "name": "proc",
+  "version": "0.0.1",
+  "description": "Solaris process info",
+  "author": "Daniel D. Shaw <dshaw@dshaw.com> (http://dshaw.com)",
+  "main": "./build/Release/prusage",
+  "scripts": {
+  	"install": "node-waf configure clean build"
+  }
+}
