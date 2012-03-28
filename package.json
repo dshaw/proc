@@ -1,7 +1,7 @@
 {
   "name": "proc",
   "version": "0.0.2",
-  "description": "Solaris process info",
+  "description": "Expose system state via the /proc file system.",
   "author": "Daniel D. Shaw <dshaw@dshaw.com> (http://dshaw.com)",
   "main": "./build/Release/usage",
   "scripts": {
