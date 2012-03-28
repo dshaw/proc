@@ -2,10 +2,26 @@
 
 Expose system state via the /proc file system.
 
+## Known limitations
+
+This was written for us to use at Voxer on Joyent. It has not been tested outside of SmartOS and I have no expectations that this should run on anything but some flavor of Solaris.
+
 ## usage
 
-`/proc/self/usage`
+Expose `/proc/self/usage`
 
+## Usage usage (Oh, so meta.)
+
+    var proc = require('proc');
+
+    setTimeout(function () {
+      var usage = proc.usage();
+      console.log(usage);
+    }, 2500);
+
+## Underlying data structure
+
+<pre>
 /*
  * Resource usage.
  */
@@ -41,3 +57,29 @@ typedef struct prusage {
 	ulong_t		pr_ioch;	/* chars read and written */
 	ulong_t		filler[10];	/* filler for future expansion */
 } prusage_t;
+</pre>
+
+## License
+
+(The MIT License)
+
+Copyright (c) 2012 Daniel D. Shaw <dshaw@dshaw.com>
+
+Permission is hereby granted, free of charge, to any person obtaining
+a copy of this software and associated documentation files (the
+'Software'), to deal in the Software without restriction, including
+without limitation the rights to use, copy, modify, merge, publish,
+distribute, sublicense, and/or sell copies of the Software, and to
+permit persons to whom the Software is furnished to do so, subject to
+the following conditions:
+
+The above copyright notice and this permission notice shall be
+included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED 'AS IS', WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
+CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
+TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.

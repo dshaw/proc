@@ -57,20 +57,20 @@ static Handle<Value> GetUsage(const Arguments &args) {
 
   usage->Set(String::New("lwpid"),    Integer::New((id_t) prusage.pr_lwpid));
   usage->Set(String::New("count"),    Integer::New((int) prusage.pr_count));
-  usage->Set(String::New("tstamp"),   Integer::New((long) prusage.pr_tstamp.tv_nsec));
-  usage->Set(String::New("create"),   Integer::New((long) prusage.pr_create.tv_nsec));
-  usage->Set(String::New("term"),     Integer::New((long) prusage.pr_term.tv_nsec));
-  usage->Set(String::New("rtime"),    Integer::New((long) prusage.pr_rtime.tv_nsec));
-  usage->Set(String::New("utime"),    Integer::New((long) prusage.pr_utime.tv_nsec));
-  usage->Set(String::New("stime"),    Integer::New((long) prusage.pr_stime.tv_nsec));
-  usage->Set(String::New("ttime"),    Integer::New((long) prusage.pr_ttime.tv_nsec));
-  usage->Set(String::New("tftime"),   Integer::New((long) prusage.pr_tftime.tv_nsec));
-  usage->Set(String::New("dftime"),   Integer::New((long) prusage.pr_dftime.tv_nsec));
-  usage->Set(String::New("kftime"),   Integer::New((long) prusage.pr_kftime.tv_nsec));
-  usage->Set(String::New("ltime"),    Integer::New((long) prusage.pr_ltime.tv_nsec));
-  usage->Set(String::New("slptime"),  Integer::New((long) prusage.pr_slptime.tv_nsec));
-  usage->Set(String::New("wtime"),    Integer::New((long) prusage.pr_wtime.tv_nsec));
-  usage->Set(String::New("stoptime"), Integer::New((long) prusage.pr_stoptime.tv_nsec));
+  usage->Set(String::New("tstamp"),   Integer::New((long) prusage.pr_tstamp.tv_sec));
+  usage->Set(String::New("create"),   Integer::New((long) prusage.pr_create.tv_sec));
+  usage->Set(String::New("term"),     Integer::New((long) prusage.pr_term.tv_sec));
+  usage->Set(String::New("rtime"),    Integer::New((long) prusage.pr_rtime.tv_sec));
+  usage->Set(String::New("utime"),    Integer::New((long) prusage.pr_utime.tv_sec));
+  usage->Set(String::New("stime"),    Integer::New((long) prusage.pr_stime.tv_sec));
+  usage->Set(String::New("ttime"),    Integer::New((long) prusage.pr_ttime.tv_sec));
+  usage->Set(String::New("tftime"),   Integer::New((long) prusage.pr_tftime.tv_sec));
+  usage->Set(String::New("dftime"),   Integer::New((long) prusage.pr_dftime.tv_sec));
+  usage->Set(String::New("kftime"),   Integer::New((long) prusage.pr_kftime.tv_sec));
+  usage->Set(String::New("ltime"),    Integer::New((long) prusage.pr_ltime.tv_sec));
+  usage->Set(String::New("slptime"),  Integer::New((long) prusage.pr_slptime.tv_sec));
+  usage->Set(String::New("wtime"),    Integer::New((long) prusage.pr_wtime.tv_sec));
+  usage->Set(String::New("stoptime"), Integer::New((long) prusage.pr_stoptime.tv_sec));
   usage->Set(String::New("minf"),     Integer::New((ulong_t) prusage.pr_minf));
   usage->Set(String::New("majf"),     Integer::New((ulong_t) prusage.pr_majf));
   usage->Set(String::New("nswap"),    Integer::New((ulong_t) prusage.pr_nswap));
@@ -157,7 +157,6 @@ static Handle<Value> GetIoch(const Arguments &args) {
 
   return scope.Close(Integer::New(ioch));
 }
-
 
 extern "C" void init (Handle<Object> target) {
   HandleScope scope;
