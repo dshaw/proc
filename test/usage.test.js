@@ -1,25 +1,11 @@
-var net = require('net')
-  , usage = require('..');
-
-var msnd = usage.msnd()
-  , ioch = usage.ioch();
+var usage = require('../');
 
 console.dir(usage);
 
-var client;
-
-for (var i=0; i < 3; i++) {
-  client = net.connect(80, 'google.com', function() { //'connect' listener
-    console.log('client connected');
-    client.write('world!\r\n');
-  });
-  client.on('data', function(data) {
-    //console.log(data.toString(), 'msnd', msnd, 'ioch', ioch);
-    console.log('msnd', msnd, 'ioch', ioch);
-    client.end();
-  });
-  client.on('end', function() {
-    console.log('client disconnected');
-    console.log('msnd', msnd, 'ioch', ioch);
-  });
+for (var i=0; i < 10; i++) {
+  console.log('ts', Date.now(), 'i', i);
+  console.log('usage', usage.usage());
+  console.log('msnd', usage.msnd());
+  console.log('mrcv', usage.mrcv());
+  console.log('ioch', usage.ioch());
 }
