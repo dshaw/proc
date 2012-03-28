@@ -1,8 +1,8 @@
 #include "node.h"
 
-#include <unistd.h> /* getpagesize() */
-#include <stdlib.h> /* getexecname() */
-#include <strings.h> /* strncpy() */
+#include <unistd.h>
+#include <stdlib.h>
+#include <strings.h>
 
 #include <kstat.h>
 #include <errno.h>
@@ -28,14 +28,13 @@
 #define _FILE_OFFSET_BITS 64
 #endif
 
-
 using namespace std;
 using namespace node;
 using namespace v8;
 
-
 static Handle<Value> GetUsage(const Arguments &args);
 static Handle<Value> GetMsnd(const Arguments &args);
+static Handle<Value> GetMrcv(const Arguments &args);
 static Handle<Value> GetIoch(const Arguments &args);
 extern "C" void init (Handle<Object>);
 
@@ -58,15 +57,10 @@ static Handle<Value> GetUsage(const Arguments &args) {
 
   usage->Set(String::New("lwpid"),    Integer::New((id_t) prusage.pr_lwpid));
   usage->Set(String::New("count"),    Integer::New((int) prusage.pr_count));
-  //usage->Set(String::New("tstamp"),   Integer::New((time_t) prusage.pr_tstamp.tv_sec));
   usage->Set(String::New("tstamp"),   Integer::New((long) prusage.pr_tstamp.tv_nsec));
-  //usage->Set(String::New("create"),   Integer::New((time_t) prusage.pr_create.tv_sec));
   usage->Set(String::New("create"),   Integer::New((long) prusage.pr_create.tv_nsec));
-  //usage->Set(String::New("term"),     Integer::New((time_t) prusage.pr_term.tv_sec));
   usage->Set(String::New("term"),     Integer::New((long) prusage.pr_term.tv_nsec));
-  ///usage->Set(String::New("rtime"),    Integer::New((time_t) prusage.pr_rtime.tv_sec));
   usage->Set(String::New("rtime"),    Integer::New((long) prusage.pr_rtime.tv_nsec));
-  //usage->Set(String::New("utime"),    Integer::New((time_t) prusage.pr_utime.tv_sec));
   usage->Set(String::New("utime"),    Integer::New((long) prusage.pr_utime.tv_nsec));
   usage->Set(String::New("stime"),    Integer::New((long) prusage.pr_stime.tv_nsec));
   usage->Set(String::New("ttime"),    Integer::New((long) prusage.pr_ttime.tv_nsec));
@@ -95,6 +89,9 @@ static Handle<Value> GetUsage(const Arguments &args) {
   return scope.Close(usage);
 }
 
+/*
+ * Get messages sent.
+ */
 static Handle<Value> GetMsnd(const Arguments &args) {
   HandleScope scope;
   prusage_t prusage;
@@ -115,6 +112,32 @@ static Handle<Value> GetMsnd(const Arguments &args) {
   return scope.Close(Integer::New(msnd));
 }
 
+/*
+ * Get messages received.
+ */
+static Handle<Value> GetMrcv(const Arguments &args) {
+  HandleScope scope;
+  prusage_t prusage;
+  ulong_t mrcv;
+  int fd;
+
+  if ((fd = open("/proc/self/usage", O_RDONLY)) < 0)
+    return scope.Close(Integer::New(-1));
+
+  if (read(fd, &prusage, sizeof (prusage_t)) != sizeof (prusage_t)) {
+    (void) close(fd);
+    return scope.Close(Integer::New(-1));
+  }
+
+  mrcv = (ulong_t) prusage.pr_mrcv;
+  (void) close(fd);
+
+  return scope.Close(Integer::New(mrcv));
+}
+
+/*
+ * Get chars read and written.
+ */
 static Handle<Value> GetIoch(const Arguments &args) {
   HandleScope scope;
   prusage_t prusage;
@@ -135,9 +158,11 @@ static Handle<Value> GetIoch(const Arguments &args) {
   return scope.Close(Integer::New(ioch));
 }
 
+
 extern "C" void init (Handle<Object> target) {
   HandleScope scope;
   NODE_SET_METHOD(target, "usage", GetUsage);
   NODE_SET_METHOD(target, "msnd", GetMsnd);
+  NODE_SET_METHOD(target, "mrcv", GetMrcv);
   NODE_SET_METHOD(target, "ioch", GetIoch);
 }
