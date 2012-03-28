@@ -1,11 +1,13 @@
 # Proc
 
-Expose low level system proc data.
+Expose system state via the /proc file system.
 
 ## usage
 
+`/proc/self/usage`
+
 /*
- * Resource usage.  /proc/<pid>/usage /proc/<pid>/lwp/<lwpid>/lwpusage
+ * Resource usage.
  */
 typedef struct prusage {
 	id_t		pr_lwpid;	/* lwp id.  0: process or defunct */
