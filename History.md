@@ -1,4 +1,14 @@
 
+0.2.0 / 2012-03-28
+==================
+
+  * Evaluate the prusage struct in pure JavaScript and don't block the event loop. (@mranney)
+
+0.1.0 / 2012-03-28
+==================
+
+  * First full full release.
+
 0.0.3 / 2012-03-28
 ==================
 

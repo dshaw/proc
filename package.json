@@ -1,10 +1,7 @@
 {
   "name": "proc",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Expose system state via the /proc file system.",
   "author": "Daniel D. Shaw <dshaw@dshaw.com> (http://dshaw.com)",
-  "main": "./proc",
-  "scripts": {
-  	"install": "node-waf configure clean build"
-  }
+  "main": "./proc"
 }
