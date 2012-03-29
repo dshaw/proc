@@ -12,10 +12,14 @@ function read_ts(buf, offset) {
     return buf.readInt32LE(offset) + (buf.readInt32LE(offset + 4) / 1000000000);
 }
 
-exports.usage = function usage2() {
+exports.usage = function usage(callback) {
     var fs = require("fs"), file, obj = {};
 
     file = fs.readFile("/proc/self/usage", function (err, buf) {
+        if (err) {
+            return callback(err);
+        }
+
         obj.lwpid = buf.readUInt32LE(0);                // lwp id.  0: process or defunct
         obj.count = buf.readUInt32LE(4);                // number of contributing lwps
         obj.tstamp = read_ts(buf, 8) / obj.count;       // current time stamp
@@ -46,7 +50,7 @@ exports.usage = function usage2() {
         obj.sysc = buf.readUInt32LE(208);               // system calls
         obj.ioch = buf.readUInt32LE(212);               // chars read and written
                                                         // filler for future expansion
-        console.log(require("util").inspect(buf.slice(208)));
-        console.dir(obj);
+
+        callback(null, obj);
     });
 };
