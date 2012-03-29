@@ -1,5 +1,5 @@
 
-0.2.0 / 2012-03-28
+0.2.1 / 2012-03-29
 ==================
 
   * Evaluate the prusage struct in pure JavaScript and don't block the event loop. (@mranney)

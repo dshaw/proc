@@ -1,7 +1,15 @@
 {
   "name": "proc",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Expose system state via the /proc file system.",
+  "keywords": ["proc", "smartos", "solaris"],
   "author": "Daniel D. Shaw <dshaw@dshaw.com> (http://dshaw.com)",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dshaw/proc"
+  },
+  "bugs": {
+    "url": "http://github.com/dshaw/proc/issues"
+  },
   "main": "./proc"
 }
