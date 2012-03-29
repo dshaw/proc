@@ -3,6 +3,9 @@ var proc = require('../');
 console.dir(proc);
 
 setInterval(function () {
-    console.log('ts', Date.now());
-    console.log('usage', proc.usage());
+    proc.usage(function (err, data) {
+        console.log('ts', Date.now());
+        console.log('err', err);
+        console.log('usage', data);
+    });
 }, 2500);
