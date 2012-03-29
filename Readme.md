@@ -14,10 +14,9 @@ Expose `/proc/self/usage`
 
     var proc = require('proc');
 
-    setTimeout(function () {
-      var usage = proc.usage();
-      console.log(usage);
-    }, 2500);
+    proc.usage(function (err, usage_obj) {
+        console.dir(usage_obj);
+    });
 
 ## Underlying data structure
 
