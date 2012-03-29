@@ -53,8 +53,6 @@ module.exports = function usage(callback) {
     data.sysc = buf.readUInt32LE(208);                   // system calls
     data.ioch = buf.readUInt32LE(212);                   // chars read and written
                                                          // filler for future expansion
-
-    console.log(data)
     callback(null, data);
   });
 };
