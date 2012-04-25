@@ -26,6 +26,10 @@ Expose `/proc/self/usage`
 
     proc usage 10008
 
+This will produce a JSON string, so it works great with something like [jsontool](https://github.com/trentm/json).
+
+    proc usage 10008 | json
+
 ## Underlying data structure
 
 <pre>
