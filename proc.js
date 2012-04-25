@@ -9,4 +9,4 @@
  */
 
 exports.version = require('./package.json').version;
-exports.usage = require('./usage');
+exports.usage = require('./lib/usage');

@@ -1,4 +1,10 @@
 
+0.2.2 / 2012-03-29
+==================
+
+  * Remove division by lwp (light-weight process) count for non lwp specific data. (@bahamas10, @papertigers)
+  * Add proc cli.
+
 0.2.1 / 2012-03-29
 ==================
 
