@@ -2,6 +2,9 @@
  * proc
  * Copyright(c) 2012 Daniel D. Shaw <dshaw@dshaw.com>
  * MIT Licensed
+ * Contributors
+ *  Dave Eddy <dave@daveeddy.com>
+ *  Mike Zeller <mike@mikezeller.net>
  */
 
 /**
@@ -25,20 +28,20 @@ module.exports = function usage(callback) {
     var data = {};
     data.lwpid = buf.readUInt32LE(0);                    // lwp id.  0: process or defunct
     data.count = buf.readUInt32LE(4);                    // number of contributing lwps
-    data.tstamp = readTimespec(buf, 8) / data.count;     // current time stamp
+    data.tstamp = readTimespec(buf, 8);                  // current time stamp
     data.create = readTimespec(buf, 16) / data.count;    // process/lwp creation time stamp
     data.term = readTimespec(buf, 24) / data.count;      // process/lwp termination time stamp
     data.rtime = readTimespec(buf, 32) / data.count;     // total lwp real (elapsed) time
-    data.utime = readTimespec(buf, 40) / data.count;     // user level cpu time
-    data.stime = readTimespec(buf, 48)  / data.count;    // system call cpu time
-    data.ttime = readTimespec(buf, 56) / data.count;     // other system trap cpu time
-    data.tftime = readTimespec(buf, 64) / data.count;    // text page fault sleep time
-    data.dftime = readTimespec(buf, 72) / data.count;    // data page fault sleep time
-    data.kftime = readTimespec(buf, 80) / data.count;    // kernel page fault sleep time
-    data.ltime = readTimespec(buf, 88) / data.count;     // user lock wait sleep time
-    data.slptime = readTimespec(buf, 96) / data.count;   // all other sleep time
-    data.wtime = readTimespec(buf, 104) / data.count;    // wait-cpu (latency) time
-    data.stoptime = readTimespec(buf, 112) / data.count; // stopped time
+    data.utime = readTimespec(buf, 40);                  // user level cpu time
+    data.stime = readTimespec(buf, 48);                  // system call cpu time
+    data.ttime = readTimespec(buf, 56);                  // other system trap cpu time
+    data.tftime = readTimespec(buf, 64);                 // text page fault sleep time
+    data.dftime = readTimespec(buf, 72);                 // data page fault sleep time
+    data.kftime = readTimespec(buf, 80);                 // kernel page fault sleep time
+    data.ltime = readTimespec(buf, 88);                  // user lock wait sleep time
+    data.slptime = readTimespec(buf, 96);                // all other sleep time
+    data.wtime = readTimespec(buf, 104);                 // wait-cpu (latency) time
+    data.stoptime = readTimespec(buf, 112);              // stopped time
                                                          // filler for future expansion
     data.minf = buf.readUInt32LE(168);                   // minor page faults
     data.majf = buf.readUInt32LE(172);                   // major page faults
