@@ -2,16 +2,13 @@
  * proc
  * Copyright(c) 2012 Daniel D. Shaw <dshaw@dshaw.com>
  * MIT Licensed
- * Contributors
- *  Dave Eddy <dave@daveeddy.com>
- *  Mike Zeller <mike@mikezeller.net>
  */
 
 /**
  * Module dependencies.
  */
 
-var fs = require("fs");
+var fs = require('fs');
 
 /**
  * Exports.
@@ -21,8 +18,13 @@ function readTimespec(buf, offset) {
   return buf.readInt32LE(offset) + (buf.readInt32LE(offset + 4) / 1000000000);
 }
 
-module.exports = function usage(callback) {
-  fs.readFile("/proc/self/usage", function (err, buf) {
+module.exports = function usage (pid, callback) {
+  if (typeof pid === 'function') {
+    callback = pid;
+    pid = 'self';
+  }
+
+  fs.readFile('/proc/'+pid+'/usage', function (err, buf) {
     if (err) return callback(err);
 
     var data = {};

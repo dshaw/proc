@@ -1,9 +1,14 @@
 {
   "name": "proc",
-  "version": "0.2.1",
+  "version": "0.2.2-pre",
   "description": "Expose system state via the /proc file system.",
-  "keywords": ["proc", "smartos", "solaris"],
+  "keywords": ["proc", "prusage", "ptime", "smartos", "solaris"],
   "author": "Daniel D. Shaw <dshaw@dshaw.com> (http://dshaw.com)",
+  "contributors": [
+    "Matt Ranney",
+    "Dave Eddy",
+    "Mike Zeller"
+  ],
   "repository": {
     "type": "git",
     "url": "https://github.com/dshaw/proc"
@@ -11,5 +16,9 @@
   "bugs": {
     "url": "http://github.com/dshaw/proc/issues"
   },
-  "main": "./proc"
+  "main": "./proc",
+  "bin": { "proc": "./bin/proc-cli.js" },
+  "scripts": {
+    "test": "make test"
+  }
 }

@@ -8,4 +8,5 @@
  * Exports.
  */
 
+exports.version = require('./package.json').version;
 exports.usage = require('./usage');

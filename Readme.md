@@ -4,7 +4,7 @@ Expose system state via the /proc file system.
 
 ## Known limitations
 
-This was written for us to use at Voxer on Joyent. It has not been tested outside of SmartOS and I have no expectations that this should run on anything but some flavor of Solaris.
+This was written for Voxer to use on Joyent. It has not been tested outside of SmartOS and there really are no expectations that this should run on anything but some flavor of Solaris. I am open to having this module supporting Linux, too and I have talked to multiple people who would be interested in having that exist. I leave it up to you, the contributor, to decide if you'd rather contribute that to this module or run with it in your own module.
 
 ## usage
 
@@ -17,6 +17,14 @@ Expose `/proc/self/usage`
     proc.usage(function (err, usage_obj) {
         console.dir(usage_obj);
     });
+
+## CLI install
+
+    npm install -g proc
+
+## CLI usage
+
+    proc usage 10008
 
 ## Underlying data structure
 
