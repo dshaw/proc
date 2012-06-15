@@ -1,4 +1,4 @@
-var proc = require('../');
+var proc = require('..');
 
 console.dir(proc);
 

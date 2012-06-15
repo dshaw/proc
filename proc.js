@@ -8,7 +8,9 @@
  * Module dependencies.
  */
 
-var platform = require('os').platform()
+var fs = require('fs')
+  , platform = require('os').platform()
+  , tools = require('./lib/proc-tools')
 
 /**
  * Exports.
@@ -25,10 +27,10 @@ exports.version = require('./package.json').version
 
 switch (platform) {
   case 'linux':
-    //files.push('stat')
+    files.push('pids','pidsSync','stat')
     break
-  case 'solaris': default:
-    files.push('usage')
+  case 'solaris':
+    files.push('pids','pidsSync','usage')
     break
 }
 
@@ -40,9 +42,14 @@ files.forEach(function (file) {
     console.warn("%s already defined, overwriting.", file)
   }
 
-  exports[file] = require('./lib/'+file)
+  if (~['pids','pidsSync'].indexOf(file)) {
+    exports[file] = tools[file]
+  } else {
+    exports[file] = require('./lib/'+file)
+  }
+
 })
 
-if (file.length === 0) {
+if (files.length === 0) {
   throw new Error('proc not supported on ' + platform)
 }
