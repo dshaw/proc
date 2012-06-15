@@ -8,8 +8,7 @@
  * Module dependencies.
  */
 
-var fs = require('fs')
-  , platform = require('os').platform()
+var platform = require('os').platform()
   , tools = require('./lib/proc-tools')
 
 /**
