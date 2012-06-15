@@ -26,7 +26,7 @@ exports.version = require('./package.json').version
 
 switch (platform) {
   case 'linux':
-    files.push('pids','pidsSync','stat')
+    files.push('pids','pidsSync') // ,'stat'
     break
   case 'sunos':
     files.push('pids','pidsSync','usage')
