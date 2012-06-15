@@ -25,7 +25,7 @@ exports.version = require('./package.json').version
 
 switch (platform) {
   case 'linux':
-    files.push('stat')
+    //files.push('stat')
     break
   case 'solaris': default:
     files.push('usage')
