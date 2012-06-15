@@ -29,7 +29,7 @@ switch (platform) {
   case 'linux':
     files.push('pids','pidsSync','stat')
     break
-  case 'solaris':
+  case 'sunos':
     files.push('pids','pidsSync','usage')
     break
 }
