@@ -5,8 +5,44 @@
  */
 
 /**
+ * Module dependencies.
+ */
+
+var platform = require('os').platform()
+
+/**
  * Exports.
  */
 
-exports.version = require('./package.json').version;
-exports.usage = require('./lib/usage');
+var files = []
+
+exports.files = files
+exports.version = require('./package.json').version
+
+/**
+ * Procfs support
+ */
+
+switch (platform) {
+  case 'linux':
+    files.push('stat')
+    break
+  case 'solaris': default:
+    files.push('usage')
+    break
+}
+
+files.forEach(function (file) {
+  if (~['files','version'].indexOf(file)) {
+    return console.error("%s is a reserved property.", file)
+  }
+  if (exports[file]) {
+    console.warn("%s already defined, overwriting.", file)
+  }
+
+  exports[file] = require('./lib/'+file)
+})
+
+if (file.length === 0) {
+  throw new Error('proc not supported on ' + platform)
+}
