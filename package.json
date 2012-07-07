@@ -2,7 +2,7 @@
   "name": "proc",
   "version": "0.2.2",
   "description": "Expose system state via the /proc file system.",
-  "keywords": ["proc", "prusage", "ptime", "smartos", "solaris"],
+  "keywords": ["illumos", "proc", "prusage", "ptime", "smartos", "solaris"],
   "author": "Daniel D. Shaw <dshaw@dshaw.com> (http://dshaw.com)",
   "contributors": [
     "Matt Ranney",
