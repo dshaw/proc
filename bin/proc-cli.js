@@ -32,6 +32,7 @@ function help (cmd) {
     , ''
     , 'examples:'
     , '   proc usage 10008'
+    , '   proc psinfo'
     , '   proc version'
   ].join('\n')
 }
