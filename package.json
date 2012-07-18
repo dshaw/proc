@@ -17,5 +17,8 @@
     "url": "http://github.com/dshaw/proc/issues"
   },
   "main": "./proc",
-  "bin": { "proc": "./bin/proc-cli.js" }
+  "bin": { "proc": "./bin/proc-cli.js" },
+  "dependencies": {
+    "destruct": "~ 0.0.0"
+  }
 }
