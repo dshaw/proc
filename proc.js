@@ -11,3 +11,4 @@
 exports.version = require('./package.json').version;
 exports.usage = require('./lib/usage');
 exports.psinfo = require('./lib/psinfo');
+exports.cred = require('./lib/cred');
